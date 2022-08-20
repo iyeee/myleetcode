@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /*
@@ -10,25 +11,22 @@ import java.util.List;
 // @lc code=start
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> res=new ArrayList<>();
+        List<List<Integer>> res=new LinkedList<>();
         dfs(res,new ArrayList<>(),nums);
         return res;
     }
     void dfs(List<List<Integer>> res,List<Integer> list,int[] nums){
         if(list.size()==nums.length){
-            res.add(list);
+            res.add(new ArrayList<>(list));
             return;
         }
         for(int n:nums){
             if(!list.contains(n)){
                 list.add(n);
-                dfs(res,new ArrayList<>(list),nums);
+                dfs(res, list, nums);
                 list.remove(list.size()-1);
             }
-            
-         
         }
-
     }
 }
 // @lc code=end
