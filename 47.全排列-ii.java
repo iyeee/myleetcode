@@ -77,8 +77,7 @@ class Solution {
 
 // Solution2：
 
-// if(used[i]||i>0&&nums[i-1]==nums[i]&&!used[i-1]) 来去重
-
+// if(used[i]||i>0&&nums[i-1]==nums[i]&&!used[i-1]) 限制相邻重复元素访问顺序
 
 // class Solution {
 //     public List<List<Integer>> permuteUnique(int[] nums) {
