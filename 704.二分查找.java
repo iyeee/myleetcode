@@ -1,34 +1,37 @@
 /*
- * @lc app=leetcode.cn id=35 lang=java
+ * @lc app=leetcode.cn id=704 lang=java
  *
- * [35] 搜索插入位置
+ * [704] 二分查找
  */
 
 // @lc code=start
 class Solution {
-    public int searchInsert(int[] nums, int target) {
-        int l=0,r=nums.length;
-        while(l<r){
+    public int search(int[] nums, int target) {
+        int l=0,r=nums.length-1;
+        while(l<=r){
             int mid=l+((r-l)>>1);
             if(nums[mid]==target){
-                r=mid;
+                return mid;
             }else if(nums[mid]<target){
                 l=mid+1;
             }else{
-                r=mid;
+                r=mid-1;
             }
         }
-        return l;
+        return -1;
     }
 }
 // @lc code=end
 
+
 // Solution1:
 // class Solution {
-//     public int searchInsert(int[] nums, int target) {
+//     public int search(int[] nums, int target) {
 //         int l=0,r=nums.length-1;
 //         while(l<=r){
-//             int mid=(r-l)/2+l;
+//             int mid=l+((r-l)>>1);
+//             // 错误 需要括号
+//             // int mid=l+(r-l)>>1;
 //             if(nums[mid]==target){
 //                 return mid;
 //             }else if(nums[mid]<target){
@@ -37,7 +40,6 @@ class Solution {
 //                 r=mid-1;
 //             }
 //         }
-//         return l;
-
+//         return -1;
 //     }
 // }
