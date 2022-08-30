@@ -1,15 +1,13 @@
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
-import java.util.Set;
-
 /*
  * @lc app=leetcode.cn id=133 lang=java
  *
  * [133] 克隆图
  */
-
 // @lc code=start
 /*
 // Definition for a Node.
@@ -36,29 +34,22 @@ class Solution {
         if(node==null){
             return null;
         }
-        Set<Node> visited=new HashSet<>();
+        Map<Node,Node> visited=new HashMap<>();
         Node newNode=new Node(node.val,new ArrayList<>());
+        visited.put(node, newNode);
         Queue<Node> queue=new LinkedList<>();
-        Queue<Node> newQueue=new LinkedList<>();
-        queue.offer(node);
-        newQueue.offer(newNode);
+        queue.add(node);
         while(!queue.isEmpty()){
             Node cur=queue.poll();
-            visited.add(cur);
-            Node newCur=newQueue.poll();
-            if(cur!=null){
-                for(Node n:cur.neighbors){
-                    if(!visited.contains(n)){
-                        queue.offer(n);
-                    }
-                    Node newNeighbor=new Node(n.val,new ArrayList<>());
-                    newQueue.offer(newNeighbor);
-                    newCur.neighbors.add(newNeighbor);
+            for(Node nei:cur.neighbors){
+                if(!visited.containsKey(nei)){
+                    queue.add(nei);
+                    visited.put(nei, new Node(nei.val,new ArrayList<>()));
                 }
+                visited.get(cur).neighbors.add(visited.get(nei));
             }
         }
-        return newNode;
+        return visited.get(node);
     }
 }
 // @lc code=end
-
