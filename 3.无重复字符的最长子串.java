@@ -15,16 +15,18 @@ class Solution {
                 return 0;
             }
             Map<Character,Integer> map=new HashMap<>();
-            int maxLen=0,left=0;
+            int left=0,max=0;
             for(int i=0;i<s.length();i++){
-                char ch=s.charAt(i);
-                if(map.containsKey(ch)){
-                    left=Integer.max(left,map.get(ch)+1);
+                char c=s.charAt(i);
+                map.put(c, map.getOrDefault(c, 0)+1);
+                while(map.get(c)>1){
+                    char d=s.charAt(left);
+                    left++;
+                    map.put(d, map.getOrDefault(d, 0)-1);
                 }
-                map.put(ch, i);
-                maxLen=Integer.max(maxLen, i-left+1);
+                max=Integer.max(max, i-left+1);
             }
-            return maxLen;
+            return max;
         }
 }
 // @lc code=end
@@ -67,5 +69,28 @@ class Solution {
 
 //         }
 //         return maxLen;
+//     }
+// }
+
+
+// Solution3:
+// class Solution {
+//     public int lengthOfLongestSubstring(String s) {
+//         if(s==null||s.length()==0){
+//             return 0;
+//         }
+//         Map<Character,Integer> map=new HashMap<>();
+//         int left=0,max=0;
+//         for(int i=0;i<s.length();i++){
+//             char c=s.charAt(i);
+//             map.put(c, map.getOrDefault(c, 0)+1);
+//             while(map.get(c)>1){
+//                 char d=s.charAt(left);
+//                 left++;
+//                 map.put(d, map.getOrDefault(d, 0)-1);
+//             }
+//             max=Integer.max(max, i-left+1);
+//         }
+//         return max;
 //     }
 // }
