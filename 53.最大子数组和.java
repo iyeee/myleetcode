@@ -11,9 +11,9 @@ class Solution {
             return 0;
         }
         int pre=0,max=nums[0];
-        for(int i=0;i<nums.length;i++){
-            pre=Integer.max(nums[i],pre+nums[i]);
-            max=Integer.max(max,pre);
+        for(int n:nums){
+            pre=Integer.max(n, pre+n);
+            max=Integer.max(pre, max);
         }
         return max;
     }
@@ -23,7 +23,7 @@ class Solution {
 
 // Solution1:
 // 贪心
-//> 局部最优解：当前“连续和”为负数的时候立刻放弃
+//> 局部最优解：当前“连续和”为负数的时候立刻放弃 
 //> 全局最优解：选取最大“连续和”
 // class Solution {
 //     public int maxSubArray(int[] nums) {
