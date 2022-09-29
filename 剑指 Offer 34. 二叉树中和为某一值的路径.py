@@ -14,7 +14,7 @@
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
         res=[]
-        path=[]
+         path=[]
         def dfs(node,path,sum):
             if not node:
                 return
