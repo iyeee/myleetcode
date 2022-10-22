@@ -6,11 +6,9 @@
 
 -- @lc code=start
 # Write your MySQL query statement below
-select a.Name as Employee
-from Employee as a,Employee as b
-where a.Salary > b.Salary 
-and a.ManagerId=b.Id;
-
+select a.name as Employee from
+Employee as a join Employee as b
+on a.ManagerId=b.id and a.Salary>b.Salary
 -- @lc code=end
 
 -- 也可以用join
@@ -19,3 +17,13 @@ and a.ManagerId=b.Id;
 -- FROM Employee AS a JOIN Employee AS b
 --      ON a.ManagerId = b.Id
 --      AND a.Salary > b.Salary;
+
+
+Solution1:
+select a.name as Employee from
+Employee as a,Employee as b
+where a.ManagerId=b.id and a.Salary>b.Salary
+
+select a.name as Employee from
+Employee as a,Employee as b
+where a.ManagerId=b.id and a.Salary>b.Salary

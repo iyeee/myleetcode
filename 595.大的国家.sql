@@ -8,16 +8,16 @@
 # Write your MySQL query statement below
 select name,population,area 
 from World 
-where area>3000000
+where area>=3000000
 UNION
 select name,population,area
 from World 
-where population>25000000;
+where population>=25000000;
 -- @lc code=end
 
 
 -- 方法一：使用or
--- select name,population,area from World where area>3000000 or population>25000000;
+-- select name,population,area from World where area>=3000000 or population>=25000000;
 
 
 -- 方法二：使用 WHERE 子句和 UNION连接子查询

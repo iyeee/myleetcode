@@ -6,10 +6,11 @@
 
 -- @lc code=start
 # Write your MySQL query statement below
-select distinct a.Email from 
-Person as a,Person as b
-where a.id!=b.id
-and a.Email=b.Email;
+select Email from
+(select Email,count(Email) as num
+from Person
+group by Email) as statistic
+where num>1
 -- @lc code=end
 
 -- 方法一：使用 GROUP BY 和 HAVING 条件
