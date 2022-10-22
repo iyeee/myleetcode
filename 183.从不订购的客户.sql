@@ -6,11 +6,10 @@
 
 -- @lc code=start
 # Write your MySQL query statement below
-select Name as Customers
-from Customers
-left join Orders
-on Customers.Id=Orders.CustomerId
-where Orders.Id is null;
+select name as Customers
+from Customers 
+where id
+not in(select CustomerId from Orders)
 -- @lc code=end
 
 -- 方法一：not in+子查询
@@ -30,3 +29,8 @@ where Orders.Id is null;
 -- left join Orders
 -- on Customers.Id=Orders.CustomerId
 -- where Orders.Id is null;
+/* 
+select name as Customers
+from Customers left join Orders
+on Customers.id=Orders.CustomerId
+where CustomerId is null */
