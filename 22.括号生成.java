@@ -58,6 +58,7 @@ class Solution {
 
 
 // Solution2:
+// !!!  --left 改变值 因此需要恢复；left-1不改变left值
 // class Solution {
 //     public List<String> generateParenthesis(int n) {
 //         List<String> res=new ArrayList<>();
