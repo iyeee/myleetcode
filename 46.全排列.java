@@ -11,22 +11,25 @@ import java.util.List;
 // @lc code=start
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> res=new LinkedList<>();
-        dfs(res,new ArrayList<>(),nums);
+        List<List<Integer>> res=new ArrayList<>();
+        dfs(nums,res,new ArrayList<>());
         return res;
     }
-    void dfs(List<List<Integer>> res,List<Integer> list,int[] nums){
-        if(list.size()==nums.length){
-            res.add(new ArrayList<>(list));
+    void dfs(int[] nums,List<List<Integer>> res,List<Integer> path)
+    {
+       if(path.size()==nums.length){
+            res.add(new ArrayList<>(path));
             return;
-        }
-        for(int n:nums){
-            if(!list.contains(n)){
-                list.add(n);
-                dfs(res, list, nums);
-                list.remove(list.size()-1);
+       }
+       for(int n:nums){
+            if(!path.contains(n)){
+                path.add(n);
+                dfs(nums, res, path);
+                path.remove(path.size()-1);
             }
-        }
+            
+       }
+
     }
 }
 // @lc code=end

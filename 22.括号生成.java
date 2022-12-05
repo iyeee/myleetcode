@@ -11,23 +11,20 @@ import java.util.List;
 class Solution {
     public List<String> generateParenthesis(int n) {
         List<String> res=new ArrayList<>();
-        dfs(res,n,n,"");
+        dfs(res,"",n,n);
         return res;
-    }
-    void dfs(List<String> res,int left,int right,String str){
+    }    
+    void dfs(List<String> res,String str,int left,int right){
         if(left==0&&right==0){
             res.add(str);
             return;
         }
-        if(left>right){
-            return;
-        }
-        if(left>0){
-            dfs(res, left-1, right, str+"(");
-        }
-        if(right>0){
-            dfs(res, left, right-1, str+")");
-        }
+       if(left>0){
+            dfs(res, str+"(", left-1, right);
+       }
+       if(right>left){
+            dfs(res, str+")", left, right-1);
+       }
 
     }
 }
@@ -56,5 +53,60 @@ class Solution {
 //         if(right>0){
 //             dfs(str+")",left,right-1,res);
 //         }
+//     }
+// }
+
+
+// Solution2:
+// !!!  --left 改变值 因此需要恢复；left-1不改变left值
+// class Solution {
+//     public List<String> generateParenthesis(int n) {
+//         List<String> res=new ArrayList<>();
+//         dfs(res,"",n,n);
+//         return res;
+//     }    
+//     void dfs(List<String> res,String str,int left,int right){
+//         if(left==0&&right==0){
+//             res.add(str);
+//             return;
+//         }
+//        if(left>0){
+//             String tmp= str;
+//             str+="(";
+//             left--;
+//             dfs(res, str, left, right);
+//             left++;
+//             str=tmp;
+//        }
+//        if(right>left){
+//             String tmp=str;
+//             str+=")";
+//             right--;
+//             dfs(res, str, left, right);
+//             right++;
+//             str=tmp;
+//        }
+
+//     }
+// }
+
+// class Solution {
+//     public List<String> generateParenthesis(int n) {
+//         List<String> res=new ArrayList<>();
+//         dfs(res,"",n,n);
+//         return res;
+//     }    
+//     void dfs(List<String> res,String str,int left,int right){
+//         if(left==0&&right==0){
+//             res.add(str);
+//             return;
+//         }
+//        if(left>0){
+//             dfs(res, str+"(", left-1, right);
+//        }
+//        if(right>left){
+//             dfs(res, str+")", left, right-1);
+//        }
+
 //     }
 // }
