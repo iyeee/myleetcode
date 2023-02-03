@@ -23,6 +23,8 @@ class Solution {
         if(right<left){
             return;
         }
+        StringBuilder stringBuilder;
+        stringBuilder.
         if(left>0){
             dfs(left-1, right, list, str+"(");
         }
