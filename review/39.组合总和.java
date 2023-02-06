@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,10 +13,10 @@ class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> res=new LinkedList<>();
         Arrays.sort(candidates);
-        dfs(res,candidates,target,new ArrayList<>(),0);
+        dfs(candidates,res,target,new ArrayList<>(),0);
         return res;
     }
-    void dfs(List<List<Integer>> res,int[] candidates,int target,List<Integer> list,int index){
+    public void dfs(int[] candidates,List<List<Integer>> res,int target,List<Integer> list,int index){
         if(target==0){
             res.add(new ArrayList<>(list));
             return;
@@ -27,35 +26,10 @@ class Solution {
                 break;
             }
             list.add(candidates[i]);
-            dfs(res, candidates, target-candidates[i], list, i);
+            dfs(candidates, res, target-candidates[i], list, i);
             list.remove(list.size()-1);
         }
     }
 }
 // @lc code=end
 
-
-// Solution1:
-// class Solution {
-//     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-//         List<List<Integer>> res=new LinkedList<>();
-//         dfs(res,candidates,target,new ArrayList<>(),0);
-//         return res;
-//     }
-//     void dfs(List<List<Integer>> res,int[] candidates,int target,List<Integer> list,int index){
-//         if(target==0){
-//             res.add(new ArrayList<>(list));
-//             return;
-//         }else if(target<0){
-//             return;
-//         }
-//         for(int i=index;i<candidates.length;i++){
-//             list.add(candidates[i]);
-//             dfs(res, candidates, target-candidates[i], list, i);
-//             list.remove(list.size()-1);
-//         }
-//     }
-// }
-
-// 剪枝
-// Solution2:
