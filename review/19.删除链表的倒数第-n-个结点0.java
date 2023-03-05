@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 /*
@@ -19,43 +22,38 @@ import java.util.List;
  */
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        if(head==null){
-            return head;
+        ListNode dummy=new ListNode(0,head);
+        Deque<ListNode> deque=new LinkedList<>();
+        ListNode cur=dummy;
+        while(cur!=null){
+            deque.push(cur);
+            cur=cur.next;
         }
-        ListNode dummy=new ListNode();
-        dummy.next=head;
-        ListNode slow=dummy,fast=dummy;
-        while(n!=-1){
-            fast=fast.next;
-            n--;
+        for(int i=0;i<n;i++){
+            deque.pop();
         }
-        while(fast!=null){
-            fast=fast.next;
-            slow=slow.next;
-        }
-        slow.next=slow.next.next;
+        ListNode pre=deque.peek();
+        pre.next=pre.next.next;
         return dummy.next;
     }
 }
 // @lc code=end
+
 // Solution1:
 // class Solution {
 //     public ListNode removeNthFromEnd(ListNode head, int n) {
-//         if(head==null){
-//             return head;
-//         }
-//         ListNode dummy=new ListNode();
-//         dummy.next=head;
-//         ListNode slow=dummy,fast=dummy;
+//         ListNode dummy=new ListNode(0,head);
+//         // slow,fast
+//         ListNode pre=dummy,cur=dummy;
 //         while(n!=-1){
-//             fast=fast.next;
+//             cur=cur.next;
 //             n--;
 //         }
-//         while(fast!=null){
-//             fast=fast.next;
-//             slow=slow.next;
+//         while(cur!=null){
+//             pre=pre.next;
+//             cur=cur.next;
 //         }
-//         slow.next=slow.next.next;
+//         pre.next=pre.next.next;
 //         return dummy.next;
 //     }
 // }
