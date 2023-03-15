@@ -1,16 +1,12 @@
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-/*
- * @lc app=leetcode.cn id=102 lang=java
- *
- * [102] 二叉树的层序遍历
- */
+import java.util.Collection;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
-import javax.swing.tree.TreeNode;
+/*
+ * @lc app=leetcode.cn id=107 lang=java
+ *
+ * [107] 二叉树的层序遍历 II
+ */
 
 // @lc code=start
 /**
@@ -29,7 +25,7 @@ import javax.swing.tree.TreeNode;
  * }
  */
 class Solution {
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
         List<List<Integer>> res=new LinkedList<>();
         if(root==null){
             return res;
@@ -44,39 +40,39 @@ class Solution {
                 list.add(node.val);
                 if(node.left!=null) deque.offer(node.left);
                 if(node.right!=null) deque.offer(node.right);
+                
             }
-            res.add(list);
+            res.add(0,list);
         }
         return res;
     }
 }
 // @lc code=end
 
+
+
 // Solution1:
 // class Solution {
-//     public List<List<Integer>> levelOrder(TreeNode root) {
+//     public List<List<Integer>> levelOrderBottom(TreeNode root) {
 //         List<List<Integer>> res=new LinkedList<>();
 //         if(root==null){
 //             return res;
 //         }
-//         List<Integer> list=new LinkedList<>();
-//         Queue<TreeNode> queue=new LinkedList<>();
-//         queue.add(root);
-//         while (!queue.isEmpty()) {
-//             int sz=queue.size();
+//         Deque<TreeNode> deque=new ArrayDeque<>();
+//         deque.offer(root);
+//         while(!deque.isEmpty()){
+//             int sz=deque.size();
+//             List<Integer> list=new ArrayList<>();
 //             for(int i=0;i<sz;i++){
-//                 TreeNode node=queue.remove();
+//                 TreeNode node= deque.poll();
 //                 list.add(node.val);
-//                 if(node.left!=null){
-//                     queue.add(node.left);
-//                 }
-//                 if(node.right!=null){
-//                     queue.add(node.right);
-//                 }
+//                 if(node.left!=null) deque.offer(node.left);
+//                 if(node.right!=null) deque.offer(node.right);
+                
 //             }
-//             res.add(new LinkedList<>(list));
-//             list.clear();
+//             res.add(list);
 //         }
+//         Collections.reverse(res);
 //         return res;
 //     }
 // }

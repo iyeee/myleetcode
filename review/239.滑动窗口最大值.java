@@ -1,3 +1,4 @@
+import java.time.Period;
 import java.util.PriorityQueue;
 
 /*
@@ -9,31 +10,20 @@ import java.util.PriorityQueue;
 // @lc code=start
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
-        PriorityQueue<Integer> priorityQueue=new PriorityQueue<>((o1,o2)->o2-o1);
+        PriorityQueue<int[]> priorityQueue=new PriorityQueue<>((o1,o2)->o1[0]!=o2[0]?o2[0]-o1[0]:o2[1]-o1[1]);
         int len=nums.length;
         int[] res=new int[len-k+1];
         for(int i=0;i<k;i++){
-            priorityQueue.add(nums[i]);
-            
+            priorityQueue.offer(new int[]{nums[i],i});
         }
-        int index=1;
-        for(int i=0;i<len-k;i++){
-            
-            res[i]=priorityQueue.peek();
-            if(nums[i+k]==res[i]){
-                if(index==0){
-                    index=2;
-                }else{
-                    index++;
-                }
+        res[0]=priorityQueue.peek()[0];
+        for(int i=k;i<len;i++){
+            priorityQueue.offer(new int[]{nums[i],i});
+            while(priorityQueue.peek()[1]<=i-k){
+                priorityQueue.poll();
             }
-            priorityQueue.add(nums[i+k]);
-            while(index--!=0&&nums[i]==res[i]){
-                priorityQueue.remove();
-            }
-           
+            res[i-k+1]=priorityQueue.peek()[0];
         }
-        res[len-k]=priorityQueue.peek();
         return res;
     }
 }
