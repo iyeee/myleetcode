@@ -11,9 +11,6 @@ import java.util.stream.Stream;
 // @lc code=start
 class Solution {
     public int search(int[] nums, int target) {
-        List<Integer> list=new LinkedList<>();
-        list.stream().filter((n)->n%2==0);
-        System.out.println(list);
         
     }
 }
