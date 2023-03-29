@@ -10,21 +10,21 @@ import java.util.Set;
  */
 
 // @lc code=start
-class Solution {
-    public int[] intersection(int[] nums1, int[] nums2) {
-        Set<Integer> set1=new HashSet<>();
-        Set<Integer> resSet=new HashSet<>();
-        for(int n:nums1){
-            set1.add(n);
-        }
-        for(int n:nums2){
-            if(set1.contains(n)){
-                resSet.add(n);
-            }
-        }
-        return resSet.stream().mapToInt(x->x).toArray();
-    }
-}
+// class Solution {
+//     public int[] intersection(int[] nums1, int[] nums2) {
+//         Set<Integer> set1=new HashSet<>();
+//         Set<Integer> resSet=new HashSet<>();
+//         for(int n:nums1){
+//             set1.add(n);
+//         }
+//         for(int n:nums2){
+//             if(set1.contains(n)){
+//                 resSet.add(n);
+//             }
+//         }
+//         return resSet.stream().mapToInt(x->x).toArray();
+//     }
+// }
 // @lc code=end
 
 // Solution1:
