@@ -8,6 +8,7 @@ import java.util.List;
  */
 
 // @lc code=start
+
 class Solution {
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> res=new ArrayList<>();
@@ -20,6 +21,7 @@ class Solution {
             res.add(new ArrayList<>(path));
             return;
         }
+        //剪枝
         for(int i=index;i<=n-(k-path.size())+1;i++){
             path.add(i);
             dfs(res, n, k, i+1, path);
@@ -29,9 +31,6 @@ class Solution {
 }
 // @lc code=end
 
-
-// Solution1:
-// 回溯+剪枝
 // class Solution {
 //     public List<List<Integer>> combine(int n, int k) {
 //         List<List<Integer>> res=new ArrayList<>();
@@ -44,7 +43,6 @@ class Solution {
 //             res.add(new ArrayList<>(path));
 //             return;
 //         }
-//         //剪枝
 //         for(int i=index;i<=n-(k-path.size())+1;i++){
 //             path.add(i);
 //             dfs(res, n, k, i+1, path);
